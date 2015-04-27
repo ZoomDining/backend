@@ -1,0 +1,61 @@
+
+/* путь к папке с шрифтами */
+@path-fonts: '../fonts';
+
+.font-names(@name, @name_folder) {
+  @font-face {
+	font-family: '@{name}';
+	src: url('@{path-fonts}/@{name_folder}/@{name}.eot');
+	src: url('@{path-fonts}/@{name_folder}/@{name}.eot?#iefix') format('embedded-opentype'),
+	url('@{path-fonts}/@{name_folder}/@{name}.woff') format('woff'),
+	url('@{path-fonts}/@{name_folder}/@{name}.ttf') format('truetype'),
+//	url('@{path-fonts}/@{name_folder}/@{name}.svg#@{name}') format('svg');
+//	font-weight: normal;
+//	font-style: normal;
+  }
+}
+
+#gradient_ag {
+  .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+	background: @start-color;
+	background: -moz-linear-gradient(top, @start-color 0%, @mid-color @color-stop, @end-color 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@start-color), color-stop(@color-stop,@mid-color), color-stop(100%,@end-color));
+	background: -webkit-linear-gradient(top,  @start-color 0%,@mid-color @color-stop,@end-color 100%);
+	background: -o-linear-gradient(top,  @start-color 0%,@mid-color @color-stop,@end-color 100%);
+	background: -ms-linear-gradient(top,  @start-color 0%,@mid-color @color-stop,@end-color 100%);
+	background: linear-gradient(to bottom,  @start-color 0%,@mid-color @color-stop,@end-color 100%);
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+
+  .vertical-one-colors(@mid-color: #00b3ee; @color-stop: 50%) {
+	background: @mid-color;
+	background: -moz-linear-gradient(top, lighten(@mid-color, 15%) 0%, @mid-color @color-stop, darken(@mid-color, 15%) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,lighten(@mid-color, 15%)), color-stop(@color-stop,@mid-color), color-stop(100%,darken(@mid-color, 15%)));
+	background: -webkit-linear-gradient(top,  lighten(@mid-color, 15%) 0%,@mid-color @color-stop,darken(@mid-color, 15%) 100%);
+	background: -o-linear-gradient(top,  lighten(@mid-color, 15%) 0%,@mid-color @color-stop,darken(@mid-color, 15%) 100%);
+	background: -ms-linear-gradient(top,  lighten(@mid-color, 15%) 0%,@mid-color @color-stop,darken(@mid-color, 15%) 100%);
+	background: linear-gradient(to bottom,  lighten(@mid-color, 15%) 0%,@mid-color @color-stop,darken(@mid-color, 15%) 100%);
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(lighten(@mid-color, 15%)),argb(darken(@mid-color, 15%)))); // IE9 and down, gets no color-stop at all for proper fallback
+  }
+
+  .border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+	-webkit-border-top-right-radius: @topright;
+	-webkit-border-bottom-right-radius: @bottomright;
+	-webkit-border-bottom-left-radius: @bottomleft;
+	-webkit-border-top-left-radius: @topleft;
+	-moz-border-radius-topright: @topright;
+	-moz-border-radius-bottomright: @bottomright;
+	-moz-border-radius-bottomleft: @bottomleft;
+	-moz-border-radius-topleft: @topleft;
+	border-top-right-radius: @topright;
+	border-bottom-right-radius: @bottomright;
+	border-bottom-left-radius: @bottomleft;
+	border-top-left-radius: @topleft;
+	.background-clip(padding-box);
+  }
+  .background-clip(@argument: padding-box) {
+	-moz-background-clip: @argument;
+	-webkit-background-clip: @argument;
+	background-clip: @argument;
+  }
+}
